@@ -8,7 +8,10 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{name}}, 你好</h1>
+        <input tpye="text" v-model="num">
+        <button v-on:click="num++">num+1</button>
+        <button v-on:click="cancel">cancel</button>
+        <h1>{{name}}你好，目前的num為：{{num}}</h1>
     </div>
 
     <script src="./node_modules/vue/dist/vue.js"></script>
@@ -16,7 +19,13 @@
         let vm = new Vue({
             el: "#app",
             data: {
-                name: "Jason"
+                name: "Jason",
+                num: 1
+            },
+            methods:{
+                cancel() {
+                    this.num--;
+                }
             }
         });
     </script>
