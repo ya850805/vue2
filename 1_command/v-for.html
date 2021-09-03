@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <ul>
+            <li v-for="(user,index) in users" :key="user.name">
+                {{index}}.{{user.name}} === {{user.gender == 'M' ? '男' :'女'}} === {{user.age}}
+                
+                物件信息：
+                <span v-for="(v, k, i) in user">{{i}}==={{k}}==={{v}}===/</span>
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(num, index) in nums" :keys="index">{{num}}</li>
+        </ul>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                users: [{
+                    name: 'Jason', gender: "M", age: 25
+                },{
+                    name: 'Juan', gender: "F", age: 26
+                },{
+                    name: 'John', gender: "M", age: 30
+                },{
+                    name: 'Kate', gender: "F", age: 28
+                }],
+                nums: [1, 2, 3, 4]
+            }
+        })
+    </script>
+</body>
+</html>
