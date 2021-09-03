@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--事件中直接寫JS-->
+        <button v-on:click="number++">點讚</button>
+        <!--寫方法-->
+        <button @click="cancel">取消</button>
+        <h1>有{{number}}個讚</h1>
+    
+        <!--事件修飾符-->
+        <div style="border: 1px solid red; padding: 20px;" @click.once="hello">
+            大DIV
+            <div style="border: 1px solid blue; padding: 20px;" @click.stop="hello">
+                小DIV<br>
+                <a href="http://google.com" @click.prevent.stop="hello">去google</a>
+            </div>
+        </div>
+
+        <!--按鍵修飾符-->
+        <input type="text" v-model="number" v-on:keyup.up="number+=2" @keyup.down="number-=2" @click.ctrl="number=10"><br>
+        
+    </div>
+    
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                number: 1
+            },
+            methods: {
+                cancel() {
+                    this.number--;
+                },
+                hello() {
+                    alert("點擊了");
+                }
+            }
+        })
+    </script>
+</body>
+</html>
