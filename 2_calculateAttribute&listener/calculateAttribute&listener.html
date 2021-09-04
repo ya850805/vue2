@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li>西遊記，價格：{{xyjPrice}}，數量：<input type="number" v-model="xyjNum"></li>
+            <li>水滸傳，價格：{{shzPrice}}，數量：<input type="number" v-model="shzNum"></li>
+            <li>總價：{{totalPrice}}</li>
+            {{msg}}
+        </ul>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                xyjPrice: 99.98,
+                shzPrice: 98.00,
+                xyjNum: 1,
+                shzNum: 1,
+                msg: ""
+            },
+            computed: {
+                totalPrice() {
+                    return this.xyjPrice * this.xyjNum + this.shzPrice * this.shzNum
+                }
+            },
+            watch: {
+                xyjNum(newVal, oldVal) {
+                    // alert("newValue：" + newVal + "===" + "oldValue：" + oldVal);
+                    if(newVal >= 3) {
+                        this.msg = "庫存超出現值";
+                        this.xyjNum = 3;
+                    } else {
+                        this.msg = "";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
